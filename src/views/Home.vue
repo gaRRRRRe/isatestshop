@@ -1,18 +1,29 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HeadBar msg="WELCOME TO ISA TEST SHOP" />
+        <h1> {{ category.name }} </h1>
+    <CategoryList/>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import HeadBar from "../components/HeadBar.vue";
+import CategoryList from "../components/CategoryList.vue";
+import CategoryModel from "../models/CategoryModel.vue";
 
-export default {
-  name: 'Home',
+@Component({
   components: {
-    HelloWorld
+    HeadBar,
+    CategoryList,
+    CategoryModel
   }
+})
+export default class Home extends Vue {
+  model = new CategoryModel();
+  category: unknown = this.model.getCategory();
+
 }
 </script>
+<style lang="scss">
+</style>
